@@ -4,8 +4,14 @@ function btnChange() {
 }
 //customerror alert
 document.getElementById("customerror").addEventListener("click", function () {
-    var hiddenDiv = document.getElementById("alertmessage");
-    hiddenDiv.style.display = "block";
+    var containerDiv = document.getElementById("alertmessage");
+    var newDiv = document.createElement("div");
+    newDiv.innerHTML = "I don't do custom cuts! Who do you think I am? <span class='closebtn'>&times;</span>";
+    containerDiv.appendChild(newDiv);
+
+    newDiv.addEventListener("click", function () {
+        containerDiv.removeChild(newDiv);
+    });
 });
 
 //API Error 

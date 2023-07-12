@@ -94,6 +94,46 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/* The alert message box */
+.alert {
+  padding: 5px;
+  background-color: #f44336;
+  /* Red */
+  color: white;
+  margin-bottom: 0;
+  margin-left: 8rem;
+  border-radius: 8rem;
+  flex: 1 1 auto;
+  text-align: center;
+  top: 0;
+  transform: translate (-50%, -50%) scale (0.1);
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+.openAlert {
+  visibility: visible;
+  top: 50%;
+  transform: translate (-50%, -50%) scale (1);
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
 .mask {
   background-color: rgba(153, 148, 148, 0.6);
   margin-top: 5rem;
@@ -4772,6 +4812,7 @@ fieldset:disabled .btn {
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+
 }
 
 .card>hr {
@@ -5263,23 +5304,6 @@ fieldset:disabled .btn {
   top: -1px;
 }
 
-.alert {
-  --bs-alert-bg: transparent;
-  --bs-alert-padding-x: 1rem;
-  --bs-alert-padding-y: 1rem;
-  --bs-alert-margin-bottom: 1rem;
-  --bs-alert-color: inherit;
-  --bs-alert-border-color: transparent;
-  --bs-alert-border: 1px solid var(--bs-alert-border-color);
-  --bs-alert-border-radius: 0.375rem;
-  position: relative;
-  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
-  margin-bottom: var(--bs-alert-margin-bottom);
-  color: var(--bs-alert-color);
-  background-color: var(--bs-alert-bg);
-  border: var(--bs-alert-border);
-  border-radius: var(--bs-alert-border-radius);
-}
 
 .alert-heading {
   color: inherit;

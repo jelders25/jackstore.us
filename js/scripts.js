@@ -2,13 +2,13 @@
 function btnChange() {
     document.getElementById("mainbtn").innerHTML = "You got it!";
 }
-let alert = document.getElementById("custom-error")
+//customerror alert
+document.getElementById("customerror").addEventListener("click", function () {
+    var hiddenDiv = document.getElementById("alertmessage");
+    hiddenDiv.style.display = "block";
+});
 
-function openAlert() {
-    alert.classList.add("openAlert");
-}
-
-//API Error
+//API Error 
 const button = document.getElementById('apierror');
 button.addEventListener('click', () => {
     const xhr = new XMLHttpRequest();

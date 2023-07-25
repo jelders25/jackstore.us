@@ -4,8 +4,9 @@ function btnChange() {
 }
 //customerror alert
 document.getElementById("customerror").addEventListener("click", function () {
-    var containerDiv = document.getElementById("alertmessage");
+    var containerDiv = document.getElementById("hiddenAlert");
     var newDiv = document.createElement("div");
+    newDiv.setAttribute("id", "alertMessage");
     newDiv.innerHTML = "I don't do custom cuts! Who do you think I am? <span class='closebtn'>&times;</span>";
     containerDiv.appendChild(newDiv);
 

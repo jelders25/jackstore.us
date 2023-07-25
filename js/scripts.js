@@ -8,7 +8,10 @@ document.getElementById("customerror").addEventListener("click", function () {
     var newDiv = document.createElement("div");
     newDiv.setAttribute("id", "alertMessage");
     newDiv.innerHTML = "I don't do custom cuts! Who do you think I am? <span class='closebtn'>&times;</span>";
+    newDiv.classList.add("errorMessage");
     containerDiv.appendChild(newDiv);
+
+
 
     newDiv.addEventListener("click", function () {
         containerDiv.removeChild(newDiv);

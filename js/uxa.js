@@ -14,7 +14,7 @@
     "trackError",
     "I don't do custom cuts! Who do you think I am?",
     {
-      "type": "formValidation",
+      "type": "textInfo",
       "severity": "minor",
       "lang": "english"
     }

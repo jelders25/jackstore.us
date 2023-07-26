@@ -3,7 +3,7 @@ function btnChange() {
     document.getElementById("mainbtn").innerHTML = "You got it!";
 }
 //customerror alert
-document.getElementById("customerror").addEventListener("click", function () {
+document.getElementById("customError").addEventListener("click", function () {
     var containerDiv = document.getElementById("hiddenAlert");
     var newDiv = document.createElement("div");
     newDiv.setAttribute("id", "alertMessage");
@@ -18,12 +18,28 @@ document.getElementById("customerror").addEventListener("click", function () {
     });
 });
 
-//API Error 
-const button = document.getElementById('apierror');
-button.addEventListener('click', () => {
+//API Error POST
+const buttonPost = document.getElementById('apiError');
+buttonPost.addEventListener('click', () => {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/api-call/400?parm1=foo&parm2=bar');
     xhr.setRequestHeader("test", "fix test2 my test");
     xhr.setRequestHeader("content-type", "text/html");
     xhr.send("request body my test");
+
+});
+//API Error GET
+const buttonGet = document.getElementById('apiError');
+buttonGet.addEventListener('click', () => {
+    const xhr = new XMLHttpRequest();
+    const params = new URLSearchParams({
+        parm1: 'foo',
+        parm2: 'bar'
+    });
+    const url = '/api-call/400?' + params.toString();
+
+    xhr.open('GET', url);
+    xhr.setRequestHeader("test", "fix test2 my test");
+    xhr.setRequestHeader("content-type", "text/html");
+    xhr.send()
 });

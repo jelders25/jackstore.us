@@ -46,9 +46,9 @@ buttonGet.addEventListener('click', () => {
 
 //API Error GraphQL 
 const buttonGraphQL = document.getElementById('apiError');
-buttonPost.addEventListener('click', () => {
+buttonGraphQL.addEventListener('click', () => {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api-call/400?parm1=foo&parm2=bar');
+    xhr.open('POST', '/graphql');
     xhr.setRequestHeader('test', 'fix test2 my test');
     xhr.setRequestHeader('content-type', 'application/json'); // Use JSON content type for GraphQL
 

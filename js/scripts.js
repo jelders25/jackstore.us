@@ -43,3 +43,41 @@ buttonGet.addEventListener('click', () => {
     xhr.setRequestHeader("content-type", "text/html");
     xhr.send()
 });
+
+//API Error GraphQL 
+const buttonPost = document.getElementById('apiError');
+buttonPost.addEventListener('click', () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api-call/400?parm1=foo&parm2=bar');
+    xhr.setRequestHeader('test', 'fix test2 my test');
+    xhr.setRequestHeader('content-type', 'application/json'); // Use JSON content type for GraphQL
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Parse the JSON response
+                const response = JSON.parse(xhr.responseText);
+                console.log('Response:', response);
+                // Check for errors
+                if (response.errors) {
+                    console.error('GraphQL Error:', response.errors);
+                }
+            } else {
+                console.error('Request failed:', xhr.status, xhr.statusText);
+            }
+        }
+    };
+
+    // GraphQL query with an error
+    const requestBody = JSON.stringify({
+        query: `
+          query {
+            user(id: 123) {
+              name
+              email
+            }
+          }
+        `,
+    });
+
+    xhr.send(requestBody);

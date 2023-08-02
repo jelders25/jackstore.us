@@ -45,28 +45,9 @@ buttonGet.addEventListener('click', () => {
 });
 
 //API Error GraphQL 
-const buttonGraphQL = document.getElementById('apiError');
-buttonGraphQL.addEventListener('click', () => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/graphql');
-    xhr.setRequestHeader('test', 'fix test2 my test');
-    xhr.setRequestHeader('content-type', 'application/json'); // Use JSON content type for GraphQL
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // Parse the JSON response
-                const response = JSON.parse(xhr.responseText);
-                console.log('Response:', response);
-                // Check for errors
-                if (response.errors) {
-                    console.error('GraphQL Error:', response.errors);
-                }
-            } else {
-                console.error('Request failed:', xhr.status, xhr.statusText);
-            }
-        }
-    };
+const buttonQL = document.getElementById('buttonQL');
+buttonQL.addEventListener('click', async () => {
+    const url = '/graphql'; // Update with your GraphQL endpoint
 
     // GraphQL query with an error
     const requestBody = JSON.stringify({
@@ -80,4 +61,23 @@ buttonGraphQL.addEventListener('click', () => {
         `,
     });
 
-    xhr.send(requestBody);
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json', // Use JSON content type for GraphQL
+                'test': 'fix test2 my test',
+            },
+            body: requestBody,
+        });
+
+        const responseData = await response.json();
+        console.log('Response:', responseData);
+
+        if (responseData.errors) {
+            console.error('GraphQL Error:', responseData.errors);
+        }
+    } catch (error) {
+        console.error('Request failed:', error);
+    }
+});

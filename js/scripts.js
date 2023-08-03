@@ -47,21 +47,41 @@ buttonGet.addEventListener('click', () => {
 //API Error GraphQL 
 const buttonQL = document.getElementById('apiError');
 buttonQL.addEventListener('click', () => {
-    // Simulate a 200 response with GraphQL-like errors and an error object
-    const simulatedResponse = JSON.stringify({
-        data: null,
-        errors: [
-            {
-                message: 'Simulated GraphQL error',
-                locations: [{ line: 1, column: 1 }],
-                path: ['user'],
-            },
-        ],
-        error: {
-            code: 'SIMULATED_ERROR_CODE',
-            message: 'A simulated error object in the response body',
-        },
+    const xhr = new XMLHttpRequest();
+    const params = new URLSearchParams({
+        parm1: 'foo',
+        parm2: 'bar'
     });
+    const url = '/api-call/400?' + params.toString();
 
-    console.log('Simulated Response:', simulatedResponse);
+    xhr.open('GET', url);
+    xhr.setRequestHeader("test", "fix test2 my test");
+    xhr.setRequestHeader("content-type", "application/json"); // Use JSON content type for the response
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                const simulatedResponse = JSON.stringify({
+                    error: {
+                        code: 'SIMULATED_ERROR_CODE',
+                        message: 'A simulated error object in the response body',
+                    },
+                });
+
+                const response = new Response(simulatedResponse, {
+                    status: 200,
+                    headers: { "content-type": "application/json" },
+                });
+
+                return response.json().then((data) => {
+                    console.log('Simulated 200 Response with Error:', data);
+                });
+            } else {
+                console.error('Request failed:', xhr.status, xhr.statusText);
+            }
+        }
+    };
+
+    // Send the request
+    xhr.send();
 });

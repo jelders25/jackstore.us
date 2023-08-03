@@ -45,39 +45,23 @@ buttonGet.addEventListener('click', () => {
 });
 
 //API Error GraphQL 
-const buttonQL = document.getElementById('buttonQL');
-buttonQL.addEventListener('click', async () => {
-    const url = '/graphql'; // Update with your GraphQL endpoint
-
-    // GraphQL query with an error
-    const requestBody = JSON.stringify({
-        query: `
-          query {
-            user(id: 123) {
-              name
-              email
-            }
-          }
-        `,
+const buttonQL = document.getElementById('apiError');
+buttonQL.addEventListener('click', () => {
+    // Simulate a 200 response with GraphQL-like errors and an error object
+    const simulatedResponse = JSON.stringify({
+        data: null,
+        errors: [
+            {
+                message: 'Simulated GraphQL error',
+                locations: [{ line: 1, column: 1 }],
+                path: ['user'],
+            },
+        ],
+        error: {
+            code: 'SIMULATED_ERROR_CODE',
+            message: 'A simulated error object in the response body',
+        },
     });
 
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json', // Use JSON content type for GraphQL
-                'test': 'fix test2 my test',
-            },
-            body: requestBody,
-        });
-
-        const responseData = await response.json();
-        console.log('Response:', responseData);
-
-        if (responseData.errors) {
-            console.error('GraphQL Error:', responseData.errors);
-        }
-    } catch (error) {
-        console.error('Request failed:', error);
-    }
+    console.log('Simulated Response:', simulatedResponse);
 });

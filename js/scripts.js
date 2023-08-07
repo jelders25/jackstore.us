@@ -45,25 +45,11 @@ buttonGet.addEventListener('click', () => {
 });
 
 //API Error GraphQL 
-function simulate200Response() {
-    return new Promise((resolve) => {
-        const simulatedResponse = {
-            error: {
-                code: 'SIMULATED_ERROR_CODE',
-                message: 'A simulated error object in the response body',
-            },
-        };
-        resolve(new Response(JSON.stringify(simulatedResponse), { status: 200 }));
-    });
-}
-
 const buttonQL = document.getElementById('apiError');
-buttonQL.addEventListener('click', async () => {
-    try {
-        const response = await simulate200Response();
-        const data = await response.json();
-        console.log('Simulated 200 Response with Error Object:', data);
-    } catch (error) {
-        console.error('Error:', error);
-    }
+buttonQL.addEventListener('click', () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'error.html');
+    xhr.setRequestHeader("test", "fix test2 my test");
+    xhr.setRequestHeader("content-type", "text/html");
+    xhr.send("request body my test");
 });

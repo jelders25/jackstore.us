@@ -2,6 +2,12 @@
 function btnChange() {
     document.getElementById("mainbtn").innerHTML = "You got it!";
 }
+
+function cartChange() {
+    document.getElementById("labelChange").innerHTML = "Checkout";
+    document.getElementById("valueChange").innerHTML = "1";
+}
+
 //customerror alert
 document.getElementById("customError").addEventListener("click", function () {
     var containerDiv = document.getElementById("hiddenAlert");

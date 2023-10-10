@@ -87,3 +87,8 @@ buttonQL.addEventListener('click', () => {
     xhr.setRequestHeader("content-type", "text/html");
     xhr.send("request body my test");
 });
+
+//Console Message
+function consoleError() {
+  console.error("Your Steak Consolation Sir!");
+}
